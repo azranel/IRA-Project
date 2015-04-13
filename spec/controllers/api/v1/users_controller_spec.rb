@@ -50,7 +50,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it 'should return message' do
-        user_delete_response = JSON.parse(response.body, symbolize_names: true)
+        user_delete_response = json_response
         expect(user_delete_response.keys).to include(:message)
       end
 
@@ -63,7 +63,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it 'should return message that user is not found' do
-        user_delete_response = JSON.parse(response.body, symbolize_names: true)
+        user_delete_response = json_response
         expect(user_delete_response.keys).to include(:message)
       end
 
@@ -85,7 +85,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         end
 
         it 'should return updated user' do
-          updated_user = JSON.parse(response.body, symbolize_names: true)
+          updated_user = json_response
           expect(updated_user[:email]).to eql(@updated_user_params[:email])
         end
 
@@ -99,7 +99,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         end
 
         it 'should return errors' do
-          request_response = JSON.parse(response.body, symbolize_names: true)
+          request_response = json_response
           expect(request_response).to have_key(:errors)
         end
 
@@ -114,7 +114,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it 'should have message' do
-        request_response = JSON.parse(response.body, symbolize_names: true)
+        request_response = json_response
         expect(request_response).to have_key(:message)
       end
 
@@ -130,7 +130,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it "renders the json representation of user just created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
@@ -145,7 +145,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it "renders errors" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
 
